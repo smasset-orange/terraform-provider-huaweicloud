@@ -29,6 +29,9 @@ type ListOpts struct {
 
 	// Status indicates whether or not a vpc is currently operational.
 	Status string `json:"status"`
+
+	// Specifies the tags the VPC must match.
+	Tags string `q:"tags"`
 }
 
 // ToVpcListQuery formats a ListOpts into a query string
@@ -48,13 +51,14 @@ func (opts ListOpts) ToVpcListQuery() (string, error) {
 // tenant who submits the request, unless an admin user submits the request.
 func List(c *golangsdk.ServiceClient, opts ListOpts) ([]Vpc, error) {
 	url := rootURL(c)
-	if opts.EnterpriseProjectID != "" {
+	if opts.EnterpriseProjectID != "" || opts.Tags != "" {
 		query, err := opts.ToVpcListQuery()
 		if err != nil {
 			return nil, err
 		}
 		url += query
 	}
+
 	pages, err := pagination.NewPager(c, url, func(r pagination.PageResult) pagination.Page {
 		return VpcPage{pagination.LinkedPageBase{PageResult: r}}
 	}).AllPages()

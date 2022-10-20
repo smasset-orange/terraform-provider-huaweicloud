@@ -20,3 +20,5 @@ require (
 	github.com/stretchr/testify v1.7.2
 	gopkg.in/yaml.v2 v2.4.0 // indirect
 )
+
+replace github.com/chnsz/golangsdk v0.0.0-20220916061340-f9686bd568aa => github.com/smasset-orange/golangsdk v0.0.0-20221020151902-bd5245b1327f

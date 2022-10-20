@@ -60,6 +60,9 @@ type Subnet struct {
 
 	//Specifies the extra dhcp opts.
 	ExtraDhcpOpts []ExtraDhcp `json:"extra_dhcp_opts"`
+
+	//Tags attached to the subnet.
+	Tags []string `json:"tags"`
 }
 
 type ExtraDhcp struct {

@@ -41,6 +41,9 @@ type ListOpts struct {
 
 	//Specifies the ID of the VPC to which the subnet belongs.
 	VPC_ID string `q:"vpc_id"`
+
+	//Specifies the tags the subnet must match.
+	Tags string `q:"tags"`
 }
 
 // ToSubnetListQuery formats a ListOpts into a query string
@@ -61,7 +64,7 @@ func (opts ListOpts) ToSubnetListQuery() (string, error) {
 func List(c *golangsdk.ServiceClient, opts ListOpts) ([]Subnet, error) {
 	url := rootURL(c)
 
-	if opts.VPC_ID != "" {
+	if opts.VPC_ID != "" || opts.Tags != "" {
 		query, err := opts.ToSubnetListQuery()
 		if err != nil {
 			return nil, err

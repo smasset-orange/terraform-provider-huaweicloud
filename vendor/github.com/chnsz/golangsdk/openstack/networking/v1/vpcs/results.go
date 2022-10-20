@@ -44,6 +44,9 @@ type Vpc struct {
 
 	//Provides informaion about shared snat
 	EnableSharedSnat bool `json:"enable_shared_snat"`
+
+	// Tags attached to the VPC.
+	Tags []string `json:"tags"`
 }
 
 // VpcPage is the page returned by a pager when traversing over a
