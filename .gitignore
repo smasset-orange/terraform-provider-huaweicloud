@@ -26,3 +26,5 @@ modules-dev/
 !command/test-fixtures/**/.terraform/
 
 dist
+.devcontainer
+.vscode
